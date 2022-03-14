@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { millisToMinutesAndSecondsWithoutExplanation } from '../lib/time';
 import { useRecoilState } from 'recoil';
 import { currentTrackIdState, isPlayingState } from '../atoms/atom';
 import useSpotify from '../hooks/useSpotify';
+import { StoreContext } from '../store/store';
 
 const Song = ({ item, order }) => {
     const spotifyApi = useSpotify()
-    const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
-    const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+    // const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
+    const { setIsPlaying } = useContext(StoreContext)
+    const { setCurrentTrackId } = useContext(StoreContext)
+    // const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 
     const playSong = () => {
         setCurrentTrackId(item.track.id);

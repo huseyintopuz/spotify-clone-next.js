@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import shuffleIcon from '../images/shuffle.png'
 import useSpotify from '../hooks/useSpotify'
@@ -21,13 +21,16 @@ import {
 import { Slider } from 'antd'
 import 'antd/dist/antd.css';
 import {debounce} from 'lodash'
+import { StoreContext } from '../store/store'
 
 const Player = () => {
   const spotifyApi = useSpotify()
   const { data: session, status } = useSession()
+  const { isPlaying, setIsPlaying} = useContext(StoreContext)
+  const { currentTrackId, setCurrentTrackId } = useContext(StoreContext)
 
-  const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
-  const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+  // const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
+  // const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
   const [volume, setVolume] = useState(50);
 
   const songInfo = useSongInfo();

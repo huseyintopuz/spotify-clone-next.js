@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SideLink from './SideLink'
 import Image from 'next/image'
 import spotifyLogo from '../images/spotify2.png'
@@ -14,6 +14,7 @@ import { useSession } from 'next-auth/react'
 import useSpotify from '../hooks/useSpotify'
 import { useRecoilState } from 'recoil'
 import { playlistIdState } from '../atoms/atom'
+import { StoreContext } from '../store/store'
 
 const Sidebar = () => {
 
@@ -22,7 +23,8 @@ const Sidebar = () => {
   const { data: session, status } = useSession();
 
   const [playlists, setPlaylists] = useState();
-  const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
+  const { setPlaylistId } = useContext(StoreContext)
+  // const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {

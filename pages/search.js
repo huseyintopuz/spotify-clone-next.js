@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSession, signOut } from 'next-auth/react'
@@ -8,18 +8,17 @@ import spotifyApi from '../lib/spotify';
 import { useRecoilState } from 'recoil';
 import { logoutState, searchResultsState } from '../atoms/atom'
 import { millisToMinutesAndSecondsWithoutExplanation } from '../lib/time'
+import { StoreContext } from '../store/store'
 
 const Search = () => {
   const router = useRouter();
-  // const array = [10, 2, 33, 4, 5];
-
-  // console.log(Math.max(...array))
-
+  const { searchResults, setSearchResults } = useContext(StoreContext)
+  
   const { Search } = Input
   const { data: session } = useSession();
   const [logout, setLogout] = useRecoilState(logoutState);
   const [search, setSearch] = useState()
-  const [searchResults, setSearchResults] = useRecoilState(searchResultsState);
+  // const [searchResults, setSearchResults] = useRecoilState(searchResultsState);
   const disabled = router.pathname === '/search'
 
   useEffect(() => {
@@ -39,7 +38,6 @@ const Search = () => {
             )
 
             const mostPopular = (Math.max(...track.popularity.toString())) // çalışmıyor
-            console.log(mostPopular)
 
             if (mostPopular) {
               return {
@@ -110,7 +108,7 @@ const Search = () => {
         null
       }
       {searchResults.slice(0, 4).map((track, index) => {
-        console.log(track)
+        // console.log(track)
         return (
           <div key={index} className='grid grid-cols-10 gap-x-4'>
             <div className='col-span-5'>

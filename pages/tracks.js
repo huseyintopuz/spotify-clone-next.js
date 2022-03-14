@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { logoutState, searchResultsState } from '../atoms/atom'
@@ -6,14 +6,16 @@ import { ClockCircleFilled, DownOutlined, LeftCircleFilled, RightCircleFilled } 
 import { Input } from 'antd';
 import { useSession, signOut } from 'next-auth/react';
 import { millisToMinutesAndSecondsWithoutExplanation } from '../lib/time';
+import { StoreContext } from '../store/store'
 
 const tracks = (track) => {
     const router = useRouter();
-
-    const tracks = useRecoilValue(searchResultsState);
+    const { searchResults, setSearchResults} = useContext(StoreContext)
+    const tracks = searchResults
+    // const tracks = useRecoilValue(searchResultsState);
     const [logout, setLogout] = useRecoilState(logoutState);
     const [search, setSearch] = useState();
-    const [searchResults, setSearchResults] = useRecoilState(searchResultsState);
+    // const [searchResults, setSearchResults] = useRecoilState(searchResultsState);
     const { Search } = Input
     const { data: session } = useSession();
     const disabled = router.pathname === '/tracks'
@@ -82,7 +84,6 @@ const tracks = (track) => {
                 <ClockCircleFilled />
             </div>
             {tracks.map((track, index) => {
-                console.log((track))
                 return (
                     <ul key={index} >
                         <li

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useSession, signOut } from 'next-auth/react'
 import { DownOutlined, LeftCircleFilled, RightCircleFilled } from '@ant-design/icons';
@@ -9,6 +9,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import spotifyApi from '../../lib/spotify';
 import { millisToMinutesAndSeconds } from '../../lib/time'
 import Songs from '../../components/Songs'
+import { StoreContext } from '../../store/store';
 
 const colors = [
   "from-indigo-500",
@@ -27,8 +28,10 @@ const playlist = () => {
 
   const { data: session } = useSession();
   const [color, setColor] = useState(null);
-  const playlistId = useRecoilValue(playlistIdState);
-  const [playlist, setPlaylist] = useRecoilState(playlistState)
+  const { playlistId, playlist, setPlaylist } = useContext(StoreContext)
+  // const [] = useContext(StoreContext)
+  // const playlistId = useRecoilValue(playlistIdState);
+  // const [playlist, setPlaylist] = useRecoilState(playlistState)
   const [logout, setLogout] = useRecoilState(logoutState)
 
   let millis = playlist?.tracks.items.map(item => item.track.duration_ms)
@@ -46,7 +49,7 @@ const playlist = () => {
   }, [spotifyApi, playlistId])
 
   return (
-    <div style={{ width: '1064px' }} className='scroll' >
+    <div style={{ width: '1064px' }} className='h-screen overflow-y-scroll' >
       <section
         className={`bg-gradient-to-b
           to-black ${color} h-96 text-white px-8 space-y-8 `}
