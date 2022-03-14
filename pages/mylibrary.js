@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useSession, signOut } from 'next-auth/react'
 import { DownOutlined, LeftCircleFilled, RightCircleFilled } from '@ant-design/icons';
 import { Button } from 'antd';
-import { logoutState } from '../atoms/atom';
-import { useRecoilState } from 'recoil';
+import { StoreContext } from '../store/store'
 
 const MyLibrary = () => {
   const router = useRouter();
   const { data: session } = useSession();
-  const [logout, setLogout] = useRecoilState(logoutState)
+  const { logout, setLogout } = useContext(StoreContext)
 
   const disabled = router.pathname === '/mylibrary'
 

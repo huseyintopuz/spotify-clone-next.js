@@ -5,20 +5,16 @@ import { useSession, signOut } from 'next-auth/react'
 import { DownOutlined, LeftCircleFilled, RightCircleFilled } from '@ant-design/icons';
 import { Input } from 'antd';
 import spotifyApi from '../lib/spotify';
-import { useRecoilState } from 'recoil';
-import { logoutState, searchResultsState } from '../atoms/atom'
 import { millisToMinutesAndSecondsWithoutExplanation } from '../lib/time'
 import { StoreContext } from '../store/store'
 
 const Search = () => {
   const router = useRouter();
-  const { searchResults, setSearchResults } = useContext(StoreContext)
+  const { searchResults, setSearchResults, logout, setLogout } = useContext(StoreContext)
   
   const { Search } = Input
   const { data: session } = useSession();
-  const [logout, setLogout] = useRecoilState(logoutState);
   const [search, setSearch] = useState()
-  // const [searchResults, setSearchResults] = useRecoilState(searchResultsState);
   const disabled = router.pathname === '/search'
 
   useEffect(() => {
@@ -58,8 +54,8 @@ const Search = () => {
   }, [search, spotifyApi.accessToken])
 
   return (
-    <div style={{ width: '1064px' }} className=' h-screen overflow-y-scroll text-white px-8 '>
-      <header className='sticky  top-0 pt-4'>
+    <div style={{ width: '1064px' }} className=' h-screen overflow-y-scroll text-white'>
+      <header className='sticky top-0 px-8 pt-4'>
         <div className='flex items-center justify-between '>
           <div className='flex space-x-4'>
             <LeftCircleFilled

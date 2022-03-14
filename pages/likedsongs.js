@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { DownOutlined, LeftCircleFilled, RightCircleFilled } from '@ant-design/icons';
 import { Button } from 'antd';
-import { logoutState } from '../atoms/atom';
-import { useRecoilState } from 'recoil';
+import { StoreContext } from '../store/store'
 
 const likedsongs = () => {
     const { data: session } = useSession();
-    const [logout, setLogout] = useRecoilState(logoutState)
+    const { logout, setLogout } = useContext(StoreContext)
 
     return (
         <div style={{ width: '1064px' }} className='h-screen overflow-y-scroll text-white px-8 '>

@@ -1,7 +1,5 @@
 import React, { useContext } from 'react'
 import Song from './Song'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { isPlayingState, playlistState } from '../atoms/atom'
 import useSpotify from '../hooks/useSpotify'
 import { PlayCircleFilled, EllipsisOutlined, ClockCircleFilled } from '@ant-design/icons'
 import 'antd/dist/antd.css';
@@ -9,10 +7,8 @@ import { StoreContext } from '../store/store'
 
 const Songs = () => {
     const spotifyApi = useSpotify()
-    // const playlist = useRecoilValue(playlistState);
     const { setIsPlaying } = useContext(StoreContext)
     const { playlist } = useContext(StoreContext);
-    // const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 
     const handlePlayPause = () => {
         spotifyApi.getMyCurrentPlaybackState().then(data => {

@@ -4,8 +4,6 @@ import shuffleIcon from '../images/shuffle.png'
 import useSpotify from '../hooks/useSpotify'
 import useSongInfo from '../hooks/useSongInfo'
 import { useSession } from 'next-auth/react'
-import { useRecoilState } from 'recoil'
-import { currentTrackIdState, isPlayingState } from '../atoms/atom'
 import {
   AppstoreAddOutlined,
   AuditOutlined,
@@ -28,9 +26,6 @@ const Player = () => {
   const { data: session, status } = useSession()
   const { isPlaying, setIsPlaying} = useContext(StoreContext)
   const { currentTrackId, setCurrentTrackId } = useContext(StoreContext)
-
-  // const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
-  // const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
   const [volume, setVolume] = useState(50);
 
   const songInfo = useSongInfo();
@@ -67,7 +62,7 @@ const Player = () => {
         setVolume(50);
       }
     }
-  }, [currentTrackIdState, spotifyApi, session])
+  }, [currentTrackId, spotifyApi, session])
 
   useEffect(() => {
     if (volume > 0 && volume < 100) {

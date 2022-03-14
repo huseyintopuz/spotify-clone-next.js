@@ -3,8 +3,6 @@ import { useSession, signOut } from 'next-auth/react'
 import { DownOutlined, LeftCircleFilled, RightCircleFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 import { shuffle } from 'lodash'
-import { logoutState, playlistIdState, playlistState } from '../../atoms/atom';
-import { useRecoilState, useRecoilValue } from 'recoil';
 import spotifyApi from '../../lib/spotify';
 import { millisToMinutesAndSeconds } from '../../lib/time'
 import Songs from '../../components/Songs'
@@ -26,10 +24,7 @@ const Center = () => {
   const { data: session } = useSession();
   const [color, setColor] = useState(null);
   const { playlistId } = useContext(StoreContext)
-  const { playlist, setPlaylist } = useContext(StoreContext)
-  // const playlistId = useRecoilValue(playlistIdState);
-  // const [playlist, setPlaylist] = useRecoilState(playlistState)
-  const [logout, setLogout] = useRecoilState(logoutState)
+  const { playlist, setPlaylist, logout, setLogout } = useContext(StoreContext)
 
   let millis = playlist?.tracks.items.map(item => item.track.duration_ms)
   millis = millis ? millis.reduce((a, b) => a + b, 0) : 0;

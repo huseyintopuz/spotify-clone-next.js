@@ -12,19 +12,14 @@ import {
 } from '@ant-design/icons'
 import { useSession } from 'next-auth/react'
 import useSpotify from '../hooks/useSpotify'
-import { useRecoilState } from 'recoil'
-import { playlistIdState } from '../atoms/atom'
 import { StoreContext } from '../store/store'
 
 const Sidebar = () => {
-
   const spotifyApi = useSpotify()
-
   const { data: session, status } = useSession();
 
   const [playlists, setPlaylists] = useState();
   const { setPlaylistId } = useContext(StoreContext)
-  // const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -63,7 +58,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <div className='sm:w-56 md:w-56  p-5 text-xs lg:text-sm text-gray-500 border-r
+    <div className='w-52 md:w-56 lg:80 p-5 text-xs lg:text-sm text-gray-500 border-r
      border-gray-900 overflow-y-scroll scrollbar-hide h-screen '>
       <div className='flex items-center space-x-2 mb-6'>
         <Image
