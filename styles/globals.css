@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .button {
+        @apply text-2xl hover:text-white hover:scale-125 transition
+         transform duration-100 ease-out
+    }
+    .play {
+        @apply cursor-pointer hover:scale-110 transition
+        transform duration-100 ease-out
+    }
+    .update {
+        @apply text-white text-sm font-bold hidden md:inline hover:scale-105 transition
+        transform duration-150 ease-in-out
+    }
+    .library {
+        @apply text-white text-sm font-bold hidden md:inline
+    }    
+    .disabledButton {
+        @apply cursor-not-allowed
+    }
+    .enabledButton {
+        @apply cursor-pointer
+    }
+   
+
+}
