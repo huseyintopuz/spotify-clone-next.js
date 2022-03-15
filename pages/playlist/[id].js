@@ -23,6 +23,7 @@ const colors = [
 
 const playlist = () => {
   const router = useRouter();
+  const disabled = router.pathname === '/playlist/[id]'
 
   const { data: session } = useSession();
   const [color, setColor] = useState(null);
@@ -51,8 +52,17 @@ const playlist = () => {
         <header className='sticky top-0 pt-4'>
           <div className='flex items-center justify-between '>
             <div className='space-x-4'>
-              <LeftCircleFilled className='text-3xl cursor-pointer' style={{ color: 'rgb(31 41 55)' }} />
-              <RightCircleFilled className='text-3xl cursor-pointer ' style={{ color: 'rgb(31 41 55)' }} />
+              <LeftCircleFilled
+                className='text-3xl cursor-pointer'
+                style={{ color: 'rgb(31 41 55)' }}
+                onClick={() => router.back()} />
+              <button type="button" className={disabled ? 'disabledButton' : 'enabledButton'}>
+                <RightCircleFilled
+                  type='button'
+                  className='text-3xl'
+                  style={{ color: 'rgb(31 41 55)' }}
+                />
+              </button>
             </div>
             <div className='flex space-x-6'>
               <Button type="primary" shape="round" style={{ background: 'black', padding: '4px 32px', border: '1px solid rgb(209 213 219)', }}

@@ -1,20 +1,32 @@
 import React, { useContext } from 'react'
+import { useRouter } from 'next/router'
 import { useSession, signOut } from 'next-auth/react'
 import { DownOutlined, LeftCircleFilled, RightCircleFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 import { StoreContext } from '../store/store'
 
 const likedsongs = () => {
+    const router = useRouter();
     const { data: session } = useSession();
     const { logout, setLogout } = useContext(StoreContext)
+    const disabled = router.pathname === '/likedsongs'
 
     return (
         <div style={{ width: '1064px' }} className='h-screen overflow-y-scroll text-white px-8 '>
             <header className='sticky  top-0 pt-4'>
                 <div className='flex items-center justify-between '>
                     <div className='space-x-4'>
-                        <LeftCircleFilled className='text-3xl cursor-pointer' style={{ color: 'rgb(31 41 55)' }} />
-                        <RightCircleFilled className='text-3xl cursor-pointer ' style={{ color: 'rgb(31 41 55)' }} />
+                        <LeftCircleFilled
+                            className='text-3xl cursor-pointer'
+                            style={{ color: 'rgb(31 41 55)' }}
+                            onClick={() => router.back()} />
+                        <button type="button" className={disabled ? 'disabledButton' : 'enabledButton'}>
+                            <RightCircleFilled
+                                type='button'
+                                className='text-3xl'
+                                style={{ color: 'rgb(31 41 55)' }}
+                            />
+                        </button>
                     </div>
                     <div className='flex space-x-6'>
                         <Button type="primary" shape="round" style={{ background: 'black', padding: '4px 32px', border: '1px solid rgb(209 213 219)', }}

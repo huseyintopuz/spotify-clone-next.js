@@ -11,7 +11,7 @@ import { StoreContext } from '../store/store'
 const Search = () => {
   const router = useRouter();
   const { searchResults, setSearchResults, logout, setLogout } = useContext(StoreContext)
-  
+
   const { Search } = Input
   const { data: session } = useSession();
   const [search, setSearch] = useState()
@@ -29,7 +29,7 @@ const Search = () => {
               (smallest, image) => {
                 if (image.height < smallest.height) return image
                 return smallest
-              }, 
+              },
               track.album.images[0]
             )
 
@@ -104,7 +104,7 @@ const Search = () => {
         null
       }
       {searchResults.slice(0, 4).map((track, index) => {
-        // console.log(track)
+
         return (
           <div key={index} className='grid grid-cols-10 gap-x-4'>
             <div className='col-span-5'>
