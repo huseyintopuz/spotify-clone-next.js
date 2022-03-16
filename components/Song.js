@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { millisToMinutesAndSecondsWithoutExplanation } from '../lib/time';
 import useSpotify from '../hooks/useSpotify';
-import { StoreContext } from '../store/store';
+import { StoreContext } from '../context/context';
 
 const Song = ({ item, order }) => {
     const spotifyApi = useSpotify()

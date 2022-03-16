@@ -6,7 +6,7 @@ import { DownOutlined, LeftCircleFilled, RightCircleFilled } from '@ant-design/i
 import { Input } from 'antd';
 import spotifyApi from '../lib/spotify';
 import { millisToMinutesAndSecondsWithoutExplanation } from '../lib/time'
-import { StoreContext } from '../store/store'
+import { StoreContext } from '../context/context'
 
 const Search = () => {
   const router = useRouter();

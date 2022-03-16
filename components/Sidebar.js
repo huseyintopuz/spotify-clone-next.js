@@ -12,13 +12,13 @@ import {
 } from '@ant-design/icons'
 import { useSession } from 'next-auth/react'
 import useSpotify from '../hooks/useSpotify'
-import { StoreContext } from '../store/store'
+import { StoreContext } from '../context/context'
 
 const Sidebar = () => {
   const spotifyApi = useSpotify()
   const { data: session, status } = useSession();
-
-  const [playlists, setPlaylists] = useState();
+ 
+  const [playlists, setPlaylists] = useState([]);
   const { setPlaylistId } = useContext(StoreContext)
 
   useEffect(() => {

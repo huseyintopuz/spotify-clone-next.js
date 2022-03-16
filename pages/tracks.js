@@ -4,7 +4,7 @@ import { ClockCircleFilled, DownOutlined, LeftCircleFilled, RightCircleFilled } 
 import { Input } from 'antd';
 import { useSession, signOut } from 'next-auth/react';
 import { millisToMinutesAndSecondsWithoutExplanation } from '../lib/time';
-import { StoreContext } from '../store/store'
+import { StoreContext } from '../context/context'
 
 const tracks = (track) => {
     const router = useRouter();

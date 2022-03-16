@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { StoreContext } from '../store/store';
+import { StoreContext } from '../context/context';
 import useSpotify from './useSpotify'
 
 const useSongInfo = () => {

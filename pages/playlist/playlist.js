@@ -7,7 +7,7 @@ import { shuffle } from 'lodash'
 import spotifyApi from '../../lib/spotify';
 import { millisToMinutesAndSeconds } from '../../lib/time'
 import Songs from '../../components/Songs'
-import { StoreContext } from '../../store/store';
+import { StoreContext } from '../../context/context';
 
 const colors = [
   "from-indigo-500",

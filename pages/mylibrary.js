@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useSession, signOut } from 'next-auth/react'
 import { DownOutlined, LeftCircleFilled, RightCircleFilled } from '@ant-design/icons';
 import { Button } from 'antd';
-import { StoreContext } from '../store/store'
+import { StoreContext } from '../context/context'
 
 const MyLibrary = () => {
   const router = useRouter();

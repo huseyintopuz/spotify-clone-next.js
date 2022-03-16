@@ -19,7 +19,7 @@ import {
 import { Slider } from 'antd'
 import 'antd/dist/antd.css';
 import {debounce} from 'lodash'
-import { StoreContext } from '../store/store'
+import { StoreContext } from '../context/context'
 
 const Player = () => {
   const spotifyApi = useSpotify()

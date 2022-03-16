@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
 import Player from './Player'
-import StoreProvider from '../store/store'
+import StoreProvider from '../context/context'
 
 const Layout = ({ children }) => {
     const [show, setShow] = useState(false)
-    // const [logout, setLogout] = useRecoilState(logoutState)
     
     useEffect(() => {
         if (window) {

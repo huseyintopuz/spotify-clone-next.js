@@ -3,13 +3,13 @@ import Song from './Song'
 import useSpotify from '../hooks/useSpotify'
 import { PlayCircleFilled, EllipsisOutlined, ClockCircleFilled } from '@ant-design/icons'
 import 'antd/dist/antd.css';
-import { StoreContext } from '../store/store'
+import { StoreContext } from '../context/context'
 
 const Songs = () => {
     const spotifyApi = useSpotify()
     const { setIsPlaying } = useContext(StoreContext)
     const { playlist } = useContext(StoreContext);
-
+    
     const handlePlayPause = () => {
         spotifyApi.getMyCurrentPlaybackState().then(data => {
           if(data.body?.is_playing) {
