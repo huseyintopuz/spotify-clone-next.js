@@ -58,7 +58,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <div className='w-52 md:w-56 lg:80 p-5 text-xs lg:text-sm text-gray-500 border-r
+    <div className='sm:w-96 md:w-96 lg:w-96 p-7 text-xs lg:text-sm text-gray-500 border-r
      border-gray-900 overflow-y-scroll scrollbar-hide h-screen '>
       <div className='flex items-center space-x-2 mb-6'>
         <Image
