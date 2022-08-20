@@ -1,3 +1,5 @@
+I used Next.Js + TailWind CSS in this application. I implemented front-end tooling such as Webpack, Babel, ESlint. I used Antd as a Css Library.   
+
 # Next.js + Tailwind CSS Example
 
 This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
